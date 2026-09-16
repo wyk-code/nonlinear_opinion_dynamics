@@ -3,16 +3,18 @@ initial_polarization=2:2:98;
 N=100;
 parfor j=1:5000
     for j1=1:49
-        x_polarization_3(j,j1)=voter_wellmixed_polarization_probability(N,initial_polarization(j1),3);
-        x_polarization_4(j,j1)=voter_wellmixed_polarization_probability(N,initial_polarization(j1),4);
-        x_polarization_6(j,j1)=voter_wellmixed_polarization_probability(N,initial_polarization(j1),6);
-        x_polarization_7(j,j1)=voter_wellmixed_polarization_probability(N,initial_polarization(j1),7);
-        x_polarization_8(j,j1)=voter_wellmixed_polarization_probability(N,initial_polarization(j1),8);
-        x_polarization_9(j,j1)=voter_wellmixed_polarization_probability(N,initial_polarization(j1),9);
+        x_polarization_1(j,j1)=voter_wellmixed_polarization_probability(initial_polarization(j1),1);
+        x_polarization_3(j,j1)=voter_wellmixed_polarization_probability(initial_polarization(j1),3);
+        x_polarization_4(j,j1)=voter_wellmixed_polarization_probability(initial_polarization(j1),4);
+        x_polarization_6(j,j1)=voter_wellmixed_polarization_probability(initial_polarization(j1),6);
+        x_polarization_7(j,j1)=voter_wellmixed_polarization_probability(initial_polarization(j1),7);
+        x_polarization_8(j,j1)=voter_wellmixed_polarization_probability(initial_polarization(j1),8);
+        x_polarization_9(j,j1)=voter_wellmixed_polarization_probability(initial_polarization(j1),9);
     end
 end
 delete(gcp)
 
+polarization1=[0,mean(x_polarization_1),1];
 polarization3=[0,mean(x_polarization_3),1];
 polarization4=[0,mean(x_polarization_4),1];
 polarization6=[0,mean(x_polarization_6),1];
@@ -27,8 +29,8 @@ bestb = bestParameter(2);
 bestc = bestParameter(3);
 bestd = bestParameter(4);
 
-r1=[3,4,6,7,8,9];
-for j=1:6
+r1=[1,3,4,6,7,8,9];
+for j=1:7
     bestLoss1 = inf;
 
     bestw1 = NaN;
@@ -53,11 +55,16 @@ for j=1:6
 
 end
 
-bestw=[bestParameter(5),bestw(1),bestw(2),bestParameter(6),bestw(3),bestw(4),bestw(5),bestw(6),bestParameter(7)];
-plot(2:10,bestw,'-o')
+bestw_fit=zeros(1,10);
+bestw_fit(r1)=bestw;
+bestw_fit(2)=bestParameter(5);
+bestw_fit(5)=bestParameter(6);
+bestw_fit(10)=bestParameter(7);
+plot(1:10,bestw_fit,'-o')
 
 
-
+x=(1:10)';
+y=bestw_fit';
 f = fit(x, y, 'b*log(1+a*(x-1))', 'StartPoint', [10, 0.5]);
 plot(x,y,'-o')
 hold on
