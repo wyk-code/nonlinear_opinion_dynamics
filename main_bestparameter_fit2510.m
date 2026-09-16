@@ -38,9 +38,7 @@ for a = value
         for c = value
             for d = value
 
-                %% ===========================
-                %% 第一组数据
-                %% ===========================
+                %alpha=2
 
                 bestLoss1 = inf;
 
@@ -62,9 +60,7 @@ for a = value
 
                 end
 
-                %% ===========================
-                %% 第二组
-                %% ===========================
+                %alpha=5
 
                 bestLoss2 = inf;
 
@@ -86,9 +82,7 @@ for a = value
 
                 end
 
-                %% ===========================
-                %% 第三组
-                %% ===========================
+                %alpha=10
 
                 bestLoss3 = inf;
 
@@ -109,8 +103,6 @@ for a = value
                     end
 
                 end
-
-                %% 总误差
 
                 totalLoss = bestLoss1 + bestLoss2 + bestLoss3;
 
