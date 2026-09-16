@@ -8,7 +8,6 @@ N = 100;
 % adj = generate_small_world(N,8,0.3);
 adj = generate_BA(N,4*N);
 
-% ================= 初始化状态 =================
 size_A = randi(polarization_initial);
 size_B = polarization_initial - size_A;
 
@@ -81,30 +80,6 @@ end
 
 end
 
-
-
-% parpool('local',10)
-% initial_polarization=2:2:98;
-% N=100;
-% parfor j=1:5000
-%     for j1=1:19
-%         x_polarization_1(j,j1)=voter_static_polarization(1,initial_polarization(j1));
-%         x_polarization_2(j,j1)=voter_static_polarization(2,initial_polarization(j1));
-%         x_polarization_5(j,j1)=voter_static_polarization(5,initial_polarization(j1));
-%     end
-% end
-% delete(gcp)
-% plot([0,initial_polarization/N,1],[0,mean(x_polarization_1),1],'-o','LineWidth',2,'MarkerSize',8)
-% hold on
-% plot([0,initial_polarization/N,1],[0,mean(x_polarization_2),1],'-^','LineWidth',2,'MarkerSize',8)
-% plot([0,initial_polarization/N,1],[0,mean(x_polarization_5),1],'-*','LineWidth',2,'MarkerSize',8)
-% xlabel('$x+y$','Interpreter','latex','FontSize',18)
-% ylabel('Polarization probability','Interpreter','latex','FontSize',18)
-% title('(c) $\mathrm{BA}$ network','Interpreter','latex','FontSize',18)
-% legend({sprintf('Simulation $\\alpha=1$'),sprintf('Simulation $\\alpha=2$'),sprintf('Simulation $\\alpha=5$')},'Interpreter','latex', 'Location','northwest')
-% box on
-% grid on
-% set(gca,'FontSize',16)
 
 
 
